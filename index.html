@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CIPHERBREAK</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="scan" aria-hidden="true"></div>
+<main class="term">
+
+  <section id="menu" class="screen">
+    <h1 class="logo">CIPHERBREAK</h1>
+    <p class="sub">Security terminal. Eight locks. One timer.</p>
+    <p class="sub">High score: <b id="best">0</b></p>
+    <div class="row">
+      <button id="btn-start" class="btn primary" type="button">Start game</button>
+      <button id="btn-how" class="btn" type="button" aria-expanded="false" aria-controls="how">Instructions</button>
+    </div>
+    <div id="how" class="panel" hidden>
+      <p>Decode each puzzle and type the answer, or pick a choice with the number keys.</p>
+      <ul>
+        <li>Wrong answer: lose 1 of 3 lives.</li>
+        <li>Timer hits zero: lose a life and the timer resets.</li>
+        <li>Hint: costs 50 points, once per puzzle.</li>
+        <li>Faster answers score more.</li>
+        <li>Answers ignore case, spaces and commas.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="game" class="screen" hidden>
+    <header class="hud">
+      <div>Level <b id="hud-level">1</b>/8</div>
+      <div>Score <b id="hud-score">0</b></div>
+      <div>Lives <b id="hud-lives" aria-live="polite"></b></div>
+      <div>Time <b id="hud-time">0</b>s</div>
+    </header>
+    <div class="bar" role="progressbar" aria-label="Time remaining" aria-valuemin="0" aria-valuemax="100"><span id="timebar"></span></div>
+    <ol id="progress" class="progress" aria-label="Level progress"></ol>
+
+    <div class="panel">
+      <h2 id="p-title"></h2>
+      <p id="p-prompt"></p>
+      <pre id="p-data" class="data"></pre>
+
+      <div id="p-choices" class="choices" role="group" aria-label="Choices"></div>
+
+      <form id="form" autocomplete="off">
+        <label for="answer">Decrypt</label>
+        <div class="row">
+          <input id="answer" type="text" spellcheck="false" autocapitalize="characters">
+          <button class="btn primary" type="submit">Submit</button>
+        </div>
+      </form>
+
+      <div class="row">
+        <button id="btn-hint" class="btn" type="button">Hint (-50)</button>
+        <button id="btn-mute" class="btn" type="button" aria-pressed="false">Sound: on</button>
+        <button id="btn-quit" class="btn" type="button">Quit</button>
+      </div>
+      <p id="hint" class="hint" aria-live="polite"></p>
+      <p id="feedback" class="feedback" role="status" aria-live="assertive"></p>
+    </div>
+  </section>
+
+  <section id="end" class="screen" hidden>
+    <h1 id="end-title" class="logo"></h1>
+    <p id="end-text" class="sub"></p>
+    <p class="sub">Final score: <b id="end-score">0</b></p>
+    <p id="end-best" class="sub"></p>
+    <div class="row">
+      <button id="btn-again" class="btn primary" type="button">Play again</button>
+      <button id="btn-menu" class="btn" type="button">Main menu</button>
+    </div>
+  </section>
+
+</main>
+<script src="game.js"></script>
+</body>
+</html>
